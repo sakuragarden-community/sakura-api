@@ -39,7 +39,8 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guild_id' => 'required|numeric',
+            'guild_id' => 'required|string',
+            'email' => 'nullable|email',
             'discord_id' => 'required|string',
             'name' => 'required|string',
             'type' => ['string', Rule::in(User::TYPES) ],
