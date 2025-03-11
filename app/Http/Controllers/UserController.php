@@ -4,52 +4,50 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     public function index()
     {
-        return response()->json(User::all());
+        return $this->getResponse(
+            $this->userRepository->getAll()
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(UserRequest $request)
     {
-        $user = User::factory()->create($request->all());
-
-        return response()->json($user);
+        return $this->getResponse(
+            $this->userRepository->create($request->all())
+        );
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Request $request, string $id)
     {
-        return response()->json(User::find($id));
+        return $this->getResponse(
+            $this->userRepository->get($id, $this->isDiscord($request))
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UserRequest $request, string $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-
-        return response()->json($user);
+        return $this->getResponse(
+            $this->userRepository->update($id, $request->all(), $this->isDiscord($request))
+        );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        $user = User::findOrFail($id);
-        return response()->json($user->delete());
+        return $this->getResponse(
+            $this->userRepository->delete($id, $this->isDiscord($request))
+        );
     }
 }
