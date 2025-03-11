@@ -12,14 +12,6 @@ Route::prefix('api')->group(function () {
         Route::post('/', 'store')->name('store');
         Route::get('/{user}', 'show')->name('show');
         Route::put('/{user}', 'update')->name('update');
-        Route::delete('/{user}', 'destroy')->name('delete');
-    });
-    Route::prefix('admins')->controller(\App\Http\Controllers\AdminController::class)->name('admins.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::post('/', 'store')->name('store');
-        Route::get('/{admin}', 'show')->name('show');
-        Route::put('/{admin}', 'update')->name('update');
-        Route::delete('/{admin}', 'destroy')->name('delete');
     });
     Route::prefix('roles')->controller(\App\Http\Controllers\RoleController::class)->name('roles.')->group(function () {
         Route::get('/', 'index')->name('index');
@@ -63,5 +55,4 @@ Route::prefix('api')->group(function () {
         Route::put('/{publication}', 'update')->name('update');
         Route::delete('/{publication}', 'destroy')->name('delete');
     });
-
 });
