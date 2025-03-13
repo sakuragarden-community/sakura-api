@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('config', function (Blueprint $table) {
             $table->id();
-            $table->string('discord_id');
-            $table->string('name');
-            $table->string('type')->default('title');
-            $table->string('guild_color')->nullable();
-            $table->json('guild_permissions')->nullable();
+            $table->string('key');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('config');
     }
 };

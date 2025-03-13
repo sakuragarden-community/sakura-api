@@ -12,22 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            // laravel default
             $table->id();
             $table->string('name');
-
-            // fields
-            $table->string('guild_id');
-            $table->string('email')->unique()->nullable();
             $table->string('discord_id');
+            $table->string('email')->unique()->nullable();
             $table->string('type')->default(\App\Models\User::TYPE_GUEST);
             $table->string('presentation_link')->nullable();
             $table->string('whatsapp')->nullable();
             $table->integer('exp')->default(0);
             $table->json('statuses')->nullable();
             $table->boolean('is_admin')->default(false);
-
-            // timestamps and remember token
             $table->rememberToken();
             $table->timestamps();
         });

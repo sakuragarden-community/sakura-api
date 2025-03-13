@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    private UserRepository $userRepository;
+    protected UserRepository $userRepository;
 
     public function __construct(UserRepository $userRepository)
     {

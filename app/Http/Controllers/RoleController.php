@@ -4,50 +4,53 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\RoleRequest;
 use App\Models\Role;
+use App\Repositories\RoleRepository;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    protected RoleRepository $roleRepository;
+
+    public function __construct(RoleRepository $roleRepository)
+    {
+        $this->roleRepository = $roleRepository;
+    }
+
     public function index()
     {
-        return response()->json(Role::all());
+        return $this->getResponse(
+            $this->roleRepository->getAll()
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(RoleRequest $request)
     {
-        $role = Role::factory()->create($request->all());
-
-        return response()->json($role);
+        return $this->getResponse(
+            $this->roleRepository->create($request->all())
+        );
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Role $role)
+    public function show(Request $request, string $id)
     {
-        return response()->json($role);
+        return $this->getResponse(
+            $this->roleRepository->get($id, $this->isDiscord($request))
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(RoleRequest $request, Role $role)
+    public function update(RoleRequest $request, string $id)
     {
-        $role->update($request->all());
-
-        return response()->json($role);
+        return $this->getResponse(
+            $this->roleRepository->update($id, $request->all(), $this->isDiscord($request))
+        );
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Role $role)
+    public function destroy(Request $request, string $id)
     {
-        return response()->json($role->delete());
+        return $this->getResponse(
+            $this->roleRepository->delete($id, $this->isDiscord($request))
+        );
     }
 }

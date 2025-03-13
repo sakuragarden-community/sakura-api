@@ -18,6 +18,6 @@ abstract class Controller
 
     public function isDiscord(Request $request): bool
     {
-        return (bool)$request->get('is_discord');
+        return (bool)$request->get('is_discord', false);
     }
 }
