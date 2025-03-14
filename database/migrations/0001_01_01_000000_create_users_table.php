@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('discord_id');
+            $table->string('name');
             $table->string('email')->unique()->nullable();
-            $table->string('type')->default(\App\Models\User::TYPE_GUEST);
-            $table->string('presentation_link')->nullable();
+            $table->string('introduction')->nullable();
             $table->string('whatsapp')->nullable();
             $table->integer('exp')->default(0);
-            $table->json('statuses')->nullable();
-            $table->boolean('is_admin')->default(false);
+            $table->boolean('is_admin_backend')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

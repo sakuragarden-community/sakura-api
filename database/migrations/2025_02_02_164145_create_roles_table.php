@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('discord_id');
             $table->string('name');
             $table->string('type')->default('title');
-            $table->string('guild_color')->nullable();
-            $table->json('guild_permissions')->nullable();
             $table->timestamps();
         });
     }

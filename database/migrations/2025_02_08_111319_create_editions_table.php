@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Event;
 
 return new class extends Migration
 {
@@ -13,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('editions', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\Event::class);
+            $table->foreignIdFor(Event::class);
             $table->dateTime('date_start');
             $table->dateTime('date_end');
             $table->text('notes')->nullable();

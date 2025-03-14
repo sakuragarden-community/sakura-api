@@ -12,20 +12,6 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
-    const string TYPE_GUEST = 'guest';
-    const string TYPE_MEMBER = 'member';
-    const string TYPE_SUPPORTER = 'supporter';
-    const string TYPE_COLLABORATOR = 'collaborator';
-    const string TYPE_ADMIN = 'admin';
-
-    const array TYPES = [
-        self::TYPE_GUEST,
-        self::TYPE_MEMBER,
-        self::TYPE_SUPPORTER,
-        self::TYPE_COLLABORATOR,
-        self::TYPE_ADMIN,
-    ];
-
     const string STATUS_ACTIVE = 'active';
     const string STATUS_INACTIVE = 'inactive';
     const string STATUS_SUSPENDED = 'suspended';
