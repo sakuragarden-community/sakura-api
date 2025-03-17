@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('discord_id');
             $table->string('name');
             $table->string('email')->unique()->nullable();
-            $table->string('introduction')->nullable();
-            $table->string('whatsapp')->nullable();
+            $table->string('introduction_url')->nullable();
             $table->integer('exp')->default(0);
             $table->boolean('is_admin_backend')->default(false);
+            $table->string('notes')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

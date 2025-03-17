@@ -32,13 +32,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'guild_id',
         'discord_id',
-        'type_id',
-        'presentation_link',
-        'whatsapp',
+        'email',
+        'introduction_url',
         'exp',
-        'statuses',
+        'notes'
     ];
 
     /**
