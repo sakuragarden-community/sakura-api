@@ -1,8 +1,10 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -13,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\User::class);
+            $table->foreignIdFor(Role::class);
             $table->string('code');
-            $table->string('name');
-            $table->timestamps();
         });
     }
 

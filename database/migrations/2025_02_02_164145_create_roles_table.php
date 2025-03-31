@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('guild_id');
+            $table->string('discord_id');
             $table->string('name');
             $table->string('type')->default('title');
-            $table->string('guild_color')->nullable();
-            $table->json('guild_permissions')->nullable();
             $table->timestamps();
         });
     }

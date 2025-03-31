@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -7,12 +8,13 @@ Route::get('/', function () {
 });
 
 Route::prefix('api')->group(function () {
-    Route::prefix('users')->controller(\App\Http\Controllers\UserController::class)->name('users.')->group(function () {
+    Route::prefix('users')->controller(UserController::class)->name('users.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
         Route::get('/{user}', 'show')->name('show');
         Route::put('/{user}', 'update')->name('update');
     });
+    /*
     Route::prefix('roles')->controller(\App\Http\Controllers\RoleController::class)->name('roles.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::post('/', 'store')->name('store');
@@ -55,4 +57,5 @@ Route::prefix('api')->group(function () {
         Route::put('/{publication}', 'update')->name('update');
         Route::delete('/{publication}', 'destroy')->name('delete');
     });
+    */
 });

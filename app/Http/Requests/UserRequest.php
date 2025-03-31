@@ -23,12 +23,14 @@ class UserRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
+        /*
         $this->merge([
             'statuses' => array_merge($this->input('statuses', []), [
                 'status' => $this->input('statuses.status', User::STATUS_ACTIVE),
                 'date' => $this->input('statuses.date', now()->toDateString()),
             ]),
         ]);
+        */
     }
 
     /**
@@ -39,17 +41,12 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'guild_id' => 'required|string',
-            'email' => 'nullable|email',
-            'discord_id' => 'required|string',
-            'name' => 'required|string',
-            'type' => ['string', Rule::in(User::TYPES) ],
-            'statuses' => 'required|array',
-            'statuses.status' => ['string', 'required', Rule::in(User::STATUSES)],
-            'statuses.date' => 'date|nullable',
-            'presentation_link' => 'nullable|string',
-            'whatsapp' => 'nullable|string',
+            'discord_id' => 'exclude_if:id,required|string',
+            'name' => 'string',
+            'introduction_url' => 'string',
             'exp' => 'numeric',
+            'is_admin_backend' => 'boolean',
+            'notes' => 'nullable|string',
         ];
     }
 
