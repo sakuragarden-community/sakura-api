@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('discord_id');
             $table->string('name');
-            $table->string('email')->unique()->nullable();
             $table->string('introduction_url')->nullable();
             $table->integer('exp')->default(0);
             $table->boolean('is_admin_backend')->default(false);

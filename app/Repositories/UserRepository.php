@@ -41,6 +41,7 @@ class UserRepository
                 $user = User::findOrFail($id);
             }
 
+            /** @var User $user */
             $user->update($data);
         } catch (ModelNotFoundException $e) {
             $user = null;
